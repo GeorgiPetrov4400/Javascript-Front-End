@@ -6,3 +6,8 @@ function solve(name, age) {
 solve('Joro', 30);
 solve('Gosho', 40);
 solve('Pesho', 50);
+
+let name = "Joro";
+let num = 8;
+let output = name + num;
+console.log(output);
