@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShoppingCartForm from "../ShoppingCartForm/ShoppingCartForm";
 import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
+import { getAllProducts } from "../../services/product-service";
 
 function ShoppingCart() {
     let [products, setProducts] = useState([
@@ -13,13 +14,23 @@ function ShoppingCart() {
         .filter((p) => p.isBought)
         .reduce((sum, product) => sum + product.cost, 0);
 
+    // useEffect(() => {
+    //     getAllProducts()
+    //         .then((allProducts) => {
+    //             setProducts(Object.values(allProducts))
+    //         })
+    //         .catch((err) => {
+    //             console.error(err);
+    //         })
+    // }, []);
+
     return (
         <section className="shopping-cart__container">
             <ShoppingCartForm />
             <section className="shopping-cart__items-list">
                 {
-                    products.map((p, index) => (
-                        <ShoppingCartItem key={index} {...p}/>
+                    products.map((p) => (
+                        <ShoppingCartItem key={p._id} {...p}/>
                     ))
                 }
             </section>

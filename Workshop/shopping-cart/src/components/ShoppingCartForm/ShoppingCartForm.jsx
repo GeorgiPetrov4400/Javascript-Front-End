@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactComponent as AddIcon } from '../../assests/add-icon.svg';
+import { addProductToCart } from "../../services/product-service";
 
 function ShoppingCartForm() {
     let [itemName, setItemName] = useState('');
@@ -8,10 +9,15 @@ function ShoppingCartForm() {
 
     const addButtonHandler = (event) => {
         event.preventDefault();
-        console.log(itemName, itemCost, itemImgUrl);
-        setItemName('');
-        setItemCost('');
-        setItemImgUrl('');
+        addProductToCart(itemName, itemCost, itemImgUrl)
+            .then((res) => {
+                setItemName('');
+                setItemCost('');
+                setItemImgUrl('');
+            })
+            .catch((err) => {
+                console.error(err);
+            })
     }
 
     return (

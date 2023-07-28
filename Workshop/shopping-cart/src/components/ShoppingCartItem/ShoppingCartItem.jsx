@@ -1,17 +1,18 @@
 import { ReactComponent as BuyIcon } from '../../assests/buy-icon.svg';
 import { ReactComponent as RemoveIcon } from '../../assests/remove-icon.svg';
+import { buyProduct } from '../../services/product-service';
 
 
 function ShoppingCartItem(individualProduct) {
-   const { name, cost, imgUrl, isBought } = individualProduct;
+   const { name, cost, imgUrl, isBought, _id } = individualProduct;
    const inlineStyle = {
       textDecoration: isBought ? 'line-through' : 'none'
    };
    const handleByItem = () => {
-
+      buyProduct(_id)
    };
    const handleRemoveItem = () => {
-
+      // removeProduct(_id)
    };
 
    return (
